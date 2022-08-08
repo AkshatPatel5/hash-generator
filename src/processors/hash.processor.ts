@@ -29,7 +29,7 @@ export class HashProcessor {
       if (processRecord) {
         const processJob = { ...processRecord, ...job?.data };
         const response: any = await this.appService.getDetails(processJob);
-        if (Object.keys(response).length) {
+        if (Object.keys(response).length && response.nonce) {
           console.log(response);
           const [updateDB, updateError] = await of(
             this.hashRepository.update(
